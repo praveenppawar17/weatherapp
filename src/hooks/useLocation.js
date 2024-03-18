@@ -20,7 +20,7 @@ const useLocation = () => {
   };
 
   const fetchLocationData = (latitude, longitude) => {
-    fetch(`http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_API_KEY}&q=${latitude},${longitude}&language=en-us`)
+    fetch(`https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${process.env.REACT_APP_API_KEY}&q=${latitude},${longitude}&language=en-us`)
       .then(response => {
         if (!response.ok) {
           if (response.status === 400) {
