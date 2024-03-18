@@ -1,0 +1,110 @@
+.card {
+  width: 25vw; 
+  height: 60vh; 
+  background-color: #f0f0f0; 
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.weather-result {
+  color: #fff;
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  font-weight: bold;
+  color: skyblue;
+  align-items: center; 
+  position: relative;
+}
+
+.weather-result { 
+  margin-left: 5px;
+  margin-right: 5px; 
+}
+
+ .backarrow {
+  color: skyblue;
+  margin-right: 5px;
+} 
+
+.cardbody {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.temperature {
+  font-size: 3rem; 
+  font-weight: bold; 
+}
+
+.weather-icon {
+  width: 80px; 
+  height: 80px;
+  margin-left: 10px; 
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.footer {
+  background-color: #eee;
+  text-align: center;
+  font-size: 1rem;
+  display: flex;
+  align-items: center; 
+}
+
+.humidity-container, .windspeed-container {
+  height: 50px;
+  border-top: 1px solid #ccc;
+  width: 50%;
+}
+
+.humidity-container {
+  border-right: 1px solid #ccc;
+}
+
+.windspeed-container {
+  border-left: 1px solid #ccc;
+  display: flex;
+  align-items: center; 
+  justify-content: center; 
+}
+
+/* used media queriies for responsiveness Design */
+
+/* for tabletts and larger */
+@media only screen and (min-width: 768px) {
+  .card {
+    width: 35vw; 
+    height: 70vh; 
+  }
+
+  .cardbody {
+    justify-content: center; 
+  }
+}
+
+/* for mobile devices use*/
+@media only screen and (max-width: 767px) {
+  .card {
+    width: 80vw; 
+    height: 80vh; 
+  }
+
+  .cardbody {
+    justify-content: center; /* center cotnent horiziontally for mobile devices */
+  }
+}
