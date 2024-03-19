@@ -53,7 +53,7 @@ const WeatherDisplay = () => {
         </div>
         <hr className="divider" />
         <div className="cardbody">
-          {errorMessage && <p className="error-message">{errorMessage}</p>}
+          {errorMessage && <p style={{color:'red'}}>{errorMessage}</p>}
           {result.WeatherText && (
             <img
               className="weather-icon"
