@@ -149,12 +149,12 @@ export const weatherIcons = [
     {
         id:8,
         phrase: "Mostly sunny",
-        url: "https://www.awxcdn.com/adc-assets/images/weathericons/2.svg"
+        url: "https://www.awxcdn.com/adc-assets/images/weathericons/1.svg"
     },
     {
         id:9,
         phrase: "Mostly sunny and very warm",
-        url: "https://www.awxcdn.com/adc-assets/images/weathericons/2.svg"
+        url: "https://www.awxcdn.com/adc-assets/images/weathericons/1.svg"
     },
     {
         id:10,

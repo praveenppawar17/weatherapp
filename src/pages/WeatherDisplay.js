@@ -7,38 +7,53 @@ import "./weatherDisplay.css";
 import { weatherIcons } from "../constants";
 import axios from "axios";
 const WeatherDisplay = () => {
-  const { Key,LocalizedName, country } = useParams();
+  const { Key, LocalizedName, country } = useParams();
   const [result, setResult] = useState({});
   const [svgUrl, setSvgUrl] = useState();
-  const API_KEY = process.env.REACT_APP_API_KEY
+  const API_KEY = process.env.REACT_APP_API_KEY;
+  const [errorMessage, setErrorMessage] = useState("");
 
   useEffect(() => {
-    axios.get(`http://dataservice.accuweather.com/currentconditions/v1/${Key}?apikey=${API_KEY}&language=en-us&details=true`)
-    .then((res) => {
-      let resResponse = {}
-      resResponse.WeatherText = res.data[0].WeatherText
-      resResponse.Temperature = res.data[0].Temperature.Metric.Value
-      resResponse.RelativeHumidity = res.data[0].RelativeHumidity
-      resResponse.WindSpeed = res.data[0].Wind.Speed.Metric.Value + " " + res.data[0].Wind.Speed.Metric.Unit
-      let img = weatherIcons.filter((icon) => {
-       return icon.phrase === resResponse.WeatherText || "Sunshine"
+    axios
+      .get(
+        `http://dataservice.accuweather.com/currentconditions/v1/${Key}?apikey=${API_KEY}&language=en-us&details=true`
+      )
+      .then((res) => {
+        let resResponse = {};
+        resResponse.WeatherText = res.data[0].WeatherText;
+        resResponse.Temperature = res.data[0].Temperature.Metric.Value;
+        resResponse.RelativeHumidity = res.data[0].RelativeHumidity;
+        resResponse.WindSpeed =
+          res.data[0].Wind.Speed.Metric.Value +
+          " " +
+          res.data[0].Wind.Speed.Metric.Unit;
+        let img = weatherIcons.filter((icon) => {
+          console.log("WeatherText... ", resResponse.WeatherText);
+          return icon.phrase === resResponse.WeatherText || "Sunshine";
+        })[0];
+        setSvgUrl(img.url);
+        setResult(resResponse);
+      })
+      .catch((error) => {
+        if (error.response && error.response.status === 503) {
+          setErrorMessage("API request limit is exceeded...");
+        } else {
+          setErrorMessage("An error occurred. Please try again later.");
         }
-      )[0]
-      setSvgUrl(img.url);
-      setResult(resResponse)
-    })
+      });
   }, []);
   return (
     <div className="container">
       <div className="card">
         <div className="weather-result">
-          <Link to="/"className="backarrow">
+          <Link to="/" className="backarrow">
             <ArrowBackIcon />
           </Link>
           <p>Weather App</p>
         </div>
         <hr className="divider" />
         <div className="cardbody">
+          {errorMessage && <p className="error-message">{errorMessage}</p>}
           {result.WeatherText && (
             <img
               className="weather-icon"
@@ -55,8 +70,8 @@ const WeatherDisplay = () => {
           <div className="temperature">{result.Temperature}°C</div>
           <p>{result.WeatherText}</p>
           <p>
-            {<RoomOutlinedIcon style={{ fontSize: "14px" }} />}{" "}
-            {LocalizedName} {country}
+            {<RoomOutlinedIcon style={{ fontSize: "14px" }} />} {LocalizedName}{" "}
+            {country}
           </p>
         </div>
         <div className="footer">
@@ -73,4 +88,3 @@ const WeatherDisplay = () => {
 };
 
 export default WeatherDisplay;
-
