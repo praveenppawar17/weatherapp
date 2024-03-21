@@ -55,6 +55,7 @@ const useLocation = () => {
         setLocationData(data);
       })
       .catch((error) => {
+        console.log('err to fetch weather dat... ', error)
         setError(error);
       });
   };

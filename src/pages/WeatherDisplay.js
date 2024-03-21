@@ -4,7 +4,7 @@ import RoomOutlinedIcon from "@mui/icons-material/RoomOutlined";
 import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./weatherDisplay.css";
-import { weatherIcons } from "../constants";
+import { humidityIcon, weatherIcons, windspeedIcon } from "../constants";
 import axios from "axios";
 const WeatherDisplay = () => {
   const { Key, LocalizedName, country } = useParams();
@@ -19,6 +19,7 @@ const WeatherDisplay = () => {
         `http://dataservice.accuweather.com/currentconditions/v1/${Key}?apikey=${API_KEY}&language=en-us&details=true`
       )
       .then((res) => {
+        console.log('data.. ', res.data)
         let resResponse = {};
         resResponse.WeatherText = res.data[0].WeatherText;
         resResponse.Temperature = res.data[0].Temperature.Metric.Value;
@@ -27,10 +28,8 @@ const WeatherDisplay = () => {
           res.data[0].Wind.Speed.Metric.Value +
           " " +
           res.data[0].Wind.Speed.Metric.Unit;
-        let img = weatherIcons.filter((icon) => {
-          console.log("WeatherText... ", resResponse.WeatherText);
-          return icon.phrase === resResponse.WeatherText || "Sunshine";
-        })[0];
+        let img = weatherIcons.find(icon => icon.phrase === resResponse.WeatherText) ||
+          weatherIcons.find(icon => icon.phrase === "Sunshine");
         setSvgUrl(img.url);
         setResult(resResponse);
       })
@@ -76,9 +75,11 @@ const WeatherDisplay = () => {
         </div>
         <div className="footer">
           <div className="humidity-container">
+            <img src={humidityIcon} style={{height:"90%", width: '25%', margin: 5}} alt="humidity-icon"/>
             <p className="humidity">Humidity: {result.RelativeHumidity}</p>
           </div>
           <div className="windspeed-container">
+          <img src={windspeedIcon} style={{height:"90%", width: '25%', margin: 5}} alt="humidity-icon"/>
             <p className="wind-speed">Wind Speed: {result.WindSpeed}</p>
           </div>
         </div>

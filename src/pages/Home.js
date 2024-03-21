@@ -15,7 +15,6 @@ const Home = () => {
 
   // custom hook for gettng location data
   const { locationData, error, getLocation } = useLocation();
-  // console.log('er.... ', error)
   useEffect(() => {
     if (error) {
       setErrorMessage(error.message);
@@ -65,8 +64,9 @@ const Home = () => {
 
   useEffect(() => {
     if (locationData) {
+      console.log("location data. ", locationData);
       navigate(
-        `/weather/${locationData.Key}/${locationData.ParentCity.LocalizedName}/${locationData.Country.LocalizedName}`
+        `/weather/${locationData.Key}/${locationData.LocalizedName}/${locationData.Country.LocalizedName}`
       );
     }
   }, [locationData, navigate]);
@@ -107,16 +107,8 @@ const Home = () => {
             </div>
           </div>
         )}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            paddingBottom: "10px",
-          }}
-        >
-          <div className="horizontal-line"></div>{" "}
-          <p style={{ color: "#ccc", margin: "0 10px" }}>or</p>
-          <div className="horizontal-line"></div>{" "}
+        <div>
+        <div className="separator">or</div>
         </div>
         <button className="button" onClick={getDeviceLocationData}>
           Get Device Location

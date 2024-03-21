@@ -18,7 +18,7 @@
 
 .weather-result {
   color: #fff;
-  padding: 10px;
+  padding-left: 10px;
   text-align: center;
   font-size: 1rem;
   display: flex;
@@ -26,6 +26,7 @@
   color: skyblue;
   align-items: center; 
   position: relative;
+  padding-top: 5px;
 }
 
 .weather-result { 
@@ -48,6 +49,7 @@
 .temperature {
   font-size: 3rem; 
   font-weight: bold; 
+  margin: 5px;
 }
 
 .weather-icon {
@@ -55,13 +57,13 @@
   height: 80px;
   margin-left: 10px; 
   margin-bottom: 10px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 
 .footer {
   background-color: #eee;
   text-align: center;
-  font-size: 1rem;
+  font-size: 14px;
   display: flex;
   align-items: center; 
 }
@@ -70,18 +72,17 @@
   height: 50px;
   border-top: 1px solid #ccc;
   width: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .humidity-container {
   border-right: 1px solid #ccc;
 }
-
-.windspeed-container {
-  border-left: 1px solid #ccc;
-  display: flex;
-  align-items: center; 
-  justify-content: center; 
+.wind-speed{
+  margin-left: 0;
 }
+
 
 /* used media queriies for responsiveness Design */
 
