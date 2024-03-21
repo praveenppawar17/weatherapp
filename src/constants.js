@@ -191,7 +191,11 @@ export const weatherIcons = [
         phrase: "Intermittent clouds",
         url: "https://www.awxcdn.com/adc-assets/images/weathericons/4.svg"
     },
-
+    {
+        id:17,
+        phrase: "Sunny",
+        url: "https://www.awxcdn.com/adc-assets/images/weathericons/2.svg"
+    },
 ]
 
 export const humidityIcon = 'https://cdn-icons-png.flaticon.com/512/9342/9342439.png'
